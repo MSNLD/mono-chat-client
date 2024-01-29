@@ -10,4 +10,12 @@
     <Platforms>x86</Platforms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\jd\Projects\MSNLD\mono-chat-client\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\jd\Projects\MSNLD\mono-chat-client\.editorconfig" />
+  </ItemGroup>
+
 </Project>
