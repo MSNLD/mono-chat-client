@@ -913,7 +913,9 @@ public class AxMSNChatFrame : AxHost
     }
   }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
   public AxMSNChatFrame()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
       : base("f58e1cef-a068-4c15-ba5e-587caf3ee8c6")
   {
   }
@@ -925,11 +927,17 @@ public class AxMSNChatFrame : AxHost
     try
     {
       ocx = (IChatFrame)GetOcx();
+      // We need to set our params before the ChatFrame is added to the form, so we use a (synchronous) callback to do so.
+      OcxCreated?.Invoke(this, ocx);
     }
     catch (Exception)
     {
     }
   }
+
+  public delegate void OcxCreatedHandler(object sender, IChatFrame ocx);
+
+  public event OcxCreatedHandler OcxCreated;
 }
 #if false // Decompilation log
 '188' items in cache
