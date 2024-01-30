@@ -12,6 +12,11 @@
 	<EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+
   <ItemGroup>
     <EditorConfigFiles Remove="C:\Users\jd\Projects\MSNLD\mono-chat-client\.editorconfig" />
   </ItemGroup>
