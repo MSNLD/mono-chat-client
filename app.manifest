@@ -1,10 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
   <assemblyIdentity type="win32" name="mono-chat-client.exe" version="1.0.0.0"/>
+
+  <!-- Add support for MSN Chat SxS Assemblies -->
+  <file name="msnchat10.ocx" hashalg="SHA1">
+    <comClass clsid="{7944C497-34C7-11D3-B09C-00C04F612FF1}" description="MSN Chat Control"  threadingModel="Apartment" />
+  </file>
+  <file name="msnchat30.ocx" hashalg="SHA1">
+    <comClass clsid="{81361143-FAF9-11d3-B0D3-00C04F612FF1}" description="MSNChatHistoryCtl" threadingModel="Apartment" />
+    <comClass clsid="{81361146-FAF9-11d3-B0D3-00C04F612FF1}" description="MSNChatMemberCtl" threadingModel="Apartment" />
+    <comClass clsid="{81361149-FAF9-11d3-B0D3-00C04F612FF1}" description="MSNChatInputCtl" threadingModel="Apartment" />
+    <comClass clsid="{8136114B-FAF9-11d3-B0D3-00C04F612FF1}" description="ChatItems Class" threadingModel="Apartment" />
+    <comClass clsid="{8136114D-FAF9-11d3-B0D3-00C04F612FF1}" description="ChannelObject Class" threadingModel="Apartment" />
+    <comClass clsid="{8136114F-FAF9-11d3-B0D3-00C04F612FF1}" description="ChannelsCollection Class" threadingModel="Apartment" />
+    <comClass clsid="{81361152-FAF9-11d3-B0D3-00C04F612FF1}" description="MSN Chat Protocol Control" threadingModel="Apartment" />
+    <comClass clsid="{81361155-FAF9-11d3-B0D3-00C04F612FF1}" description="MSN Chat Control 3.0" threadingModel="Apartment" />
+  </file>
+  <file name="msnchat40.ocx" hashalg="SHA1">
+    <comClass clsid="{e87a6788-1d0f-4444-8898-1d25829b6755}" description="MSN Chat Control 4.0" threadingModel="Apartment" />
+  </file>
+  <file name="msnchat41.ocx" hashalg="SHA1">
+    <comClass clsid="{29c13b62-b9f7-4cd3-8cef-0a58a1a99441}" description="MSN Chat Control 4.1" threadingModel="Apartment" />
+  </file>
+  <file name="MsnChat42.ocx" hashalg="SHA1">
+    <comClass clsid="{7a32634b-029c-4836-a023-528983982a49}" description="MSN Chat Control 4.2" threadingModel="Apartment" />
+    <comClass clsid="{71b8f2df-0032-48ba-a784-93d9caaab07d}" description="MSN Chat Control 4.2 Settings" threadingModel="Apartment" />
+  </file>
   <file name="MsnChat45.ocx" hashalg="SHA1">
     <comClass clsid="{f58e1cef-a068-4c15-ba5e-587caf3ee8c6}" description="MSN Chat Control 4.5" threadingModel="Apartment" />
     <comClass clsid="{fa980e7e-9e44-4d2f-b3c2-9a5be42525f8}" description="MSN Chat Control 4.5 Settings" threadingModel="Apartment" />
   </file>
+
   <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
     <security>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
