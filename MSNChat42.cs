@@ -1,12 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace MSNChat
+namespace MSNChat42
 {
   [ComImport]
   [InterfaceType(2)]
   [TypeLibType(4096)]
-  [Guid("5EEB8014-53B2-448B-9F3B-C553424832E1")]
+  [Guid("F9D2FF9E-A674-454B-A562-E9A768B09AEF")]
   public interface _ICChatFrameEvents
   {
     [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
@@ -16,7 +16,7 @@ namespace MSNChat
 
   [ComImport]
   [CoClass(typeof(ChatSettingsClass))]
-  [Guid("D5EF4299-12F1-474D-98C5-3C658FD2E343")]
+  [Guid("2E3B2173-25A5-4E71-9F3C-AA3BE618A11C")]
   public interface ChatSettings : IChatSettings
   {
   }
@@ -24,11 +24,11 @@ namespace MSNChat
   [ComImport]
   [ClassInterface(ClassInterfaceType.None)]
   [TypeLibType(2)]
-  [Guid("FA980E7E-9E44-4D2F-B3C2-9A5BE42525F8")]
+  [Guid("71B8F2DF-0032-48BA-A784-93D9CAAAB07D")]
   public class ChatSettingsClass : IChatSettings, ChatSettings
   {
-    [DispId(-501)]
     [ComAliasName("stdole.OLE_COLOR")]
+    [DispId(-501)]
     public virtual extern uint BackColor
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
@@ -42,8 +42,8 @@ namespace MSNChat
       set;
     }
 
-    [DispId(-513)]
     [ComAliasName("stdole.OLE_COLOR")]
+    [DispId(-513)]
     public virtual extern uint ForeColor
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
@@ -87,7 +87,7 @@ namespace MSNChat
   }
 
   [ComImport]
-  [Guid("125E64FA-3304-4BB9-A756-D0D44CC8CD7D")]
+  [Guid("1B27FF4F-7222-4F64-A431-CD5A163BDE30")]
   [TypeLibType(4160)]
   public interface IChatFrame
   {
@@ -375,8 +375,8 @@ namespace MSNChat
       set;
     }
 
-    [DispId(23)]
     [ComAliasName("stdole.OLE_COLOR")]
+    [DispId(23)]
     uint ButtonBackColor
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
@@ -541,80 +541,10 @@ namespace MSNChat
       [param: MarshalAs(UnmanagedType.BStr)]
       set;
     }
-
-    [DispId(35)]
-    string WhisperContent
-    {
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(35)]
-      [return: MarshalAs(UnmanagedType.BStr)]
-      get;
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(35)]
-      [param: In]
-      [param: MarshalAs(UnmanagedType.BStr)]
-      set;
-    }
-
-    [DispId(36)]
-    string UserRole
-    {
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(36)]
-      [return: MarshalAs(UnmanagedType.BStr)]
-      get;
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(36)]
-      [param: In]
-      [param: MarshalAs(UnmanagedType.BStr)]
-      set;
-    }
-
-    [DispId(37)]
-    string AuditMessage
-    {
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(37)]
-      [return: MarshalAs(UnmanagedType.BStr)]
-      get;
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(37)]
-      [param: In]
-      [param: MarshalAs(UnmanagedType.BStr)]
-      set;
-    }
-
-    [DispId(38)]
-    string SubscriberInfo
-    {
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(38)]
-      [return: MarshalAs(UnmanagedType.BStr)]
-      get;
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(38)]
-      [param: In]
-      [param: MarshalAs(UnmanagedType.BStr)]
-      set;
-    }
-
-    [DispId(39)]
-    string UpsellURL
-    {
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(39)]
-      [return: MarshalAs(UnmanagedType.BStr)]
-      get;
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(39)]
-      [param: In]
-      [param: MarshalAs(UnmanagedType.BStr)]
-      set;
-    }
   }
 
   [ComImport]
-  [Guid("D5EF4299-12F1-474D-98C5-3C658FD2E343")]
+  [Guid("2E3B2173-25A5-4E71-9F3C-AA3BE618A11C")]
   [TypeLibType(4160)]
   public interface IChatSettings
   {
@@ -633,8 +563,8 @@ namespace MSNChat
       set;
     }
 
-    [DispId(-513)]
     [ComAliasName("stdole.OLE_COLOR")]
+    [DispId(-513)]
     uint ForeColor
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
@@ -678,20 +608,20 @@ namespace MSNChat
   }
 
   [ComImport]
-  [Guid("125E64FA-3304-4BB9-A756-D0D44CC8CD7D")]
+  [Guid("1B27FF4F-7222-4F64-A431-CD5A163BDE30")]
   [CoClass(typeof(MSNChatFrameClass))]
   public interface MSNChatFrame : IChatFrame
   {
   }
 
   [ComImport]
-  [Guid("F58E1CEF-A068-4C15-BA5E-587CAF3EE8C6")]
+  [Guid("7A32634B-029C-4836-A023-528983982A49")]
   [ClassInterface(ClassInterfaceType.None)]
   [TypeLibType(2)]
   public class MSNChatFrameClass : IChatFrame, MSNChatFrame
   {
-    [ComAliasName("stdole.OLE_COLOR")]
     [DispId(-501)]
+    [ComAliasName("stdole.OLE_COLOR")]
     public virtual extern uint BackColor
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
@@ -761,8 +691,8 @@ namespace MSNChat
       set;
     }
 
-    [ComAliasName("stdole.OLE_COLOR")]
     [DispId(6)]
+    [ComAliasName("stdole.OLE_COLOR")]
     public virtual extern uint BackHighlightColor
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
@@ -791,8 +721,8 @@ namespace MSNChat
       set;
     }
 
-    [ComAliasName("stdole.OLE_COLOR")]
     [DispId(8)]
+    [ComAliasName("stdole.OLE_COLOR")]
     public virtual extern uint TopBackHighlightColor
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
@@ -1136,76 +1066,6 @@ namespace MSNChat
       get;
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
       [DispId(34)]
-      [param: In]
-      [param: MarshalAs(UnmanagedType.BStr)]
-      set;
-    }
-
-    [DispId(35)]
-    public virtual extern string WhisperContent
-    {
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(35)]
-      [return: MarshalAs(UnmanagedType.BStr)]
-      get;
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(35)]
-      [param: In]
-      [param: MarshalAs(UnmanagedType.BStr)]
-      set;
-    }
-
-    [DispId(36)]
-    public virtual extern string UserRole
-    {
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(36)]
-      [return: MarshalAs(UnmanagedType.BStr)]
-      get;
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(36)]
-      [param: In]
-      [param: MarshalAs(UnmanagedType.BStr)]
-      set;
-    }
-
-    [DispId(37)]
-    public virtual extern string AuditMessage
-    {
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(37)]
-      [return: MarshalAs(UnmanagedType.BStr)]
-      get;
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(37)]
-      [param: In]
-      [param: MarshalAs(UnmanagedType.BStr)]
-      set;
-    }
-
-    [DispId(38)]
-    public virtual extern string SubscriberInfo
-    {
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(38)]
-      [return: MarshalAs(UnmanagedType.BStr)]
-      get;
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(38)]
-      [param: In]
-      [param: MarshalAs(UnmanagedType.BStr)]
-      set;
-    }
-
-    [DispId(39)]
-    public virtual extern string UpsellURL
-    {
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(39)]
-      [return: MarshalAs(UnmanagedType.BStr)]
-      get;
-      [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-      [DispId(39)]
       [param: In]
       [param: MarshalAs(UnmanagedType.BStr)]
       set;
