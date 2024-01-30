@@ -2,7 +2,8 @@
 <assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
   <assemblyIdentity type="win32" name="mono-chat-client.exe" version="1.0.0.0"/>
   <file name="MsnChat45.ocx" hashalg="SHA1">
-    <comClass clsid="{F58E1CEF-A068-4c15-BA5E-587CAF3EE8C6}" description="MSN Chat Control 4.5" threadingModel="Apartment" />
+    <comClass clsid="{f58e1cef-a068-4c15-ba5e-587caf3ee8c6}" description="MSN Chat Control 4.5" threadingModel="Apartment" />
+    <comClass clsid="{fa980e7e-9e44-4d2f-b3c2-9a5be42525f8}" description="MSN Chat Control 4.5 Settings" threadingModel="Apartment" />
   </file>
   <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
     <security>
