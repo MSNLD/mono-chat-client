@@ -1,9 +1,8 @@
-﻿
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.InteropServices;
 using MSNChat41;
 
-namespace MSNChat41
+namespace AxMSNChat41
 {
   [DesignTimeVisible(true)]
   [Clsid("{9088e688-063a-4806-a3db-6522712fc061}")]
