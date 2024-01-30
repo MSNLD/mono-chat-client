@@ -11,7 +11,7 @@ namespace mono_chat_client
 
     private void Form1_Load(object sender, EventArgs e)
     {
-r      try
+      try
       {
         AxMSNChatFrame axChatFrame = new AxMSNChatFrame();
         axChatFrame.OcxCreated += (ocx) =>
