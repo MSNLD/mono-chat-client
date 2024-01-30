@@ -1,4 +1,4 @@
-using AxMSNChat;
+using AxMSNChat45;
 using System.Runtime.InteropServices;
 
 namespace mono_chat_client
