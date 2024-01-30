@@ -17,10 +17,10 @@ namespace mono_chat_client
         AxMSNChatFrame axChatFrame = new AxMSNChatFrame();
         axChatFrame.OcxCreated += (ocx) =>
         {
-          ocx.BaseURL = "http://mono.chat/";
-          ocx.NickName = "JDz";
-          ocx.RoomName = "The Lobby";
-          ocx.Server = "dir.irc7.com";
+          axChatFrame.BaseURL = "http://mono.chat/";
+          axChatFrame.NickName = "JD[mcc]";
+          axChatFrame.RoomName = "The Lobby";
+          axChatFrame.Server = "dir.irc7.com";
         };
 
         axChatFrame.Visible = true;
