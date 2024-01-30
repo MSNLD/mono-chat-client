@@ -23,7 +23,6 @@ namespace mono_chat_client
           axChatFrame.Server = "dir.irc7.com";
         };
 
-        axChatFrame.Visible = true;
         axChatFrame.Dock = DockStyle.Fill;
         Controls.Add(axChatFrame);
       }
