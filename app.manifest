@@ -18,9 +18,11 @@
   </file>
   <file name="msnchat40.ocx" hashalg="SHA1">
     <comClass clsid="{e87a6788-1d0f-4444-8898-1d25829b6755}" description="MSN Chat Control 4.0" threadingModel="Apartment" />
+	<!--<comClass clsid="{9088e688-063a-4806-a3db-6522712fc061}" description="MSN Chat Control 4.0 Settings" threadingModel="Apartment" />-->
   </file>
   <file name="msnchat41.ocx" hashalg="SHA1">
     <comClass clsid="{29c13b62-b9f7-4cd3-8cef-0a58a1a99441}" description="MSN Chat Control 4.1" threadingModel="Apartment" />
+	<comClass clsid="{9088e688-063a-4806-a3db-6522712fc061}" description="MSN Chat Control 4.1 Settings" threadingModel="Apartment" />
   </file>
   <file name="MsnChat42.ocx" hashalg="SHA1">
     <comClass clsid="{7a32634b-029c-4836-a023-528983982a49}" description="MSN Chat Control 4.2" threadingModel="Apartment" />

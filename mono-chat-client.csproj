@@ -26,6 +26,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="msnchat40.ocx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="msnchat41.ocx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MsnChat42.ocx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="MsnChat45.ocx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
