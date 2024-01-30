@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
-  <file name="MsnChat45.ocx" hashalg="SHA1">
-    <comClass clsid="{F58E1CEF-A068-4c15-BA5E-587CAF3EE8C6}" description="MSN Chat Control 4.5" threadingModel="Apartment" />
-  </file>
-</assembly>
