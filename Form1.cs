@@ -15,12 +15,13 @@ namespace mono_chat_client
       try
       {
         AxMSNChatFrame axChatFrame = new AxMSNChatFrame();
-        axChatFrame.OcxCreated += (ocx) =>
+        axChatFrame.OcxCreated += (sender, ocx) =>
         {
-          axChatFrame.BaseURL = "http://mono.chat/";
-          axChatFrame.NickName = "JD[mcc]";
-          axChatFrame.RoomName = "The Lobby";
-          axChatFrame.Server = "dir.irc7.com";
+          sender.BaseURL = "http://mono.chat/";
+          sender.NickName = "JD[mcc]";
+          sender.RoomName = "The Lobby";
+          sender.Server = "dir.irc7.com";
+          sender.BackColor = Color.Green;
         };
 
         axChatFrame.Dock = DockStyle.Fill;

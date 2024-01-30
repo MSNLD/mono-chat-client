@@ -115,14 +115,14 @@ namespace AxMSNChat
       try
       {
         ocx = (IChatSettings)GetOcx();
-        OcxCreated?.Invoke(ocx);
+        OcxCreated?.Invoke(this, ocx);
       }
       catch (Exception)
       {
       }
     }
 
-    public delegate void OcxCreatedHandler(IChatSettings ocx);
+    public delegate void OcxCreatedHandler(AxChatSettings sender, IChatSettings ocx);
 
     public event OcxCreatedHandler? OcxCreated;
   }
@@ -965,14 +965,14 @@ namespace AxMSNChat
       try
       {
         ocx = (IChatFrame)GetOcx();
-        OcxCreated?.Invoke(ocx);
+        OcxCreated?.Invoke(this, ocx);
       }
       catch (Exception)
       {
       }
     }
 
-    public delegate void OcxCreatedHandler(IChatFrame ocx);
+    public delegate void OcxCreatedHandler(AxMSNChatFrame sender, IChatFrame ocx);
 
     public event OcxCreatedHandler? OcxCreated;
   }
