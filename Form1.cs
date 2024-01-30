@@ -21,7 +21,7 @@ namespace mono_chat_client
           sender.NickName = "JD[mcc]";
           sender.RoomName = "The Lobby";
           sender.Server = "dir.irc7.com";
-          sender.BackColor = Color.Green;
+          //sender.BackColor = Color.Green;
         };
 
         axChatFrame.Dock = DockStyle.Fill;
