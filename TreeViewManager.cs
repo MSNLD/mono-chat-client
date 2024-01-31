@@ -105,6 +105,8 @@ namespace mono_chat_client
       var parentNode = getParentNode();
       if (parentNode == null)
         return null;
+      // Enhancement: Adds context to the Whisper Window titlebar.
+      SetWindowText(hWnd, $"{caption} - {parentNode.Text}");
       var node = parentNode.Nodes.Add(caption);
       node.Tag = hWnd;
       if (parentNode.Nodes.Count == 1)
