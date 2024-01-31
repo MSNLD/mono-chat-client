@@ -1,0 +1,11 @@
+﻿SetWinEventHook
+GetWindowText
+GetWindowTextLength
+GetWindowThreadProcessId
+FindWindowEx
+GetClassName
+//EnableWindow
+//ShowWindow
+OBJECT_IDENTIFIER
+EnumChildWindows
+SetWindowText
