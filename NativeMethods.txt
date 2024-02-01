@@ -4,8 +4,25 @@ GetWindowTextLength
 GetWindowThreadProcessId
 FindWindowEx
 GetClassName
-//EnableWindow
-//ShowWindow
 OBJECT_IDENTIFIER
 EnumChildWindows
 SetWindowText
+WINDOW_STYLE
+SetWindowLong
+WINDOW_LONG_PTR_INDEX
+GetWindowLong
+WINDOW_EX_STYLE
+SetParent
+SetWindowPos
+SET_WINDOW_POS_FLAGS
+GetClientRect
+GetFocus
+SetFocus
+SendMessage
+
+// PInvoke.{CONST}
+WM_GETICON
+WM_SETICON
+ICON_BIG
+ICON_SMALL
+ICON_SMALL2

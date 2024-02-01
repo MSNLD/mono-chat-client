@@ -11,6 +11,11 @@ using Windows.Win32.Foundation;
 using Windows.Win32.UI.Accessibility;
 using Windows.Win32.UI.WindowsAndMessaging;
 using static Windows.Win32.PInvoke;
+using static Windows.Win32.UI.WindowsAndMessaging.WINDOW_STYLE;
+using static Windows.Win32.UI.WindowsAndMessaging.WINDOW_LONG_PTR_INDEX;
+using static Windows.Win32.UI.WindowsAndMessaging.SET_WINDOW_POS_FLAGS;
+using static Windows.Win32.UI.WindowsAndMessaging.WINDOW_EX_STYLE;
+using System.Drawing;
 
 namespace mono_chat_client
 {
@@ -34,11 +39,6 @@ namespace mono_chat_client
       }
       // Listen for events in the "CWhisperManager" window's thread.
       PInvoke.SetWinEventHook((uint)PInvoke.WindowsEventHookType.EVENT_OBJECT_CREATE, (uint)WindowsEventHookType.EVENT_OBJECT_DESTROY, null, WinEventProc, (uint)Environment.ProcessId, whisperThreadId, (uint)(WindowsEventHookFlags.WINEVENT_OUTOFCONTEXT | WindowsEventHookFlags.WINEVENT_SKIPOWNTHREAD));
-    }
-
-    private void EnumChildWindows2(nint hWnd, Func<HWND, LPARAM, BOOL> value)
-    {
-      throw new NotImplementedException();
     }
 
     private string getChannelName()
@@ -70,7 +70,6 @@ namespace mono_chat_client
 
     private TreeNode addParentNode()
     {
-      Debug.WriteLine("addParentNode");
       var caption = getChannelName();
       var node = treeView.Nodes.Add((!string.IsNullOrEmpty(caption)) ? caption: "<Unknown>");
       node.Tag = (HWND)hWnd;
@@ -111,6 +110,7 @@ namespace mono_chat_client
       node.Tag = hWnd;
       if (parentNode.Nodes.Count == 1)
         parentNode.Expand();
+      hideTitleBar(hWnd);
       return node;
     }
 
@@ -169,6 +169,50 @@ namespace mono_chat_client
           deleteChildNode(hWnd);
         }
       }
+    }
+
+    private void hideTitleBar(HWND hWnd)
+    {
+      // Defaults (on Win11)
+      // WS: 0x96CF00C4L = WS_POPUP | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_OVERLAPPEDWINDOW | 0xC4 (App Defined)
+      // WS_EX: 0x00010101L = WS_EX_CONTROLPARENT | WS_EX_WINDOWEDGE | WS_EX_DLGMODALFRAME
+
+      // We need this before we remove the titlebar, etc.
+      GetClientRect(hWnd, out var rect);
+
+      // Get rid of the title bar and window border.
+      var style = (uint)GetWindowLong(hWnd, GWL_STYLE);
+      style ^= (uint)(WS_POPUP | WS_CHILD | WS_OVERLAPPEDWINDOW);
+      SetWindowLong(hWnd, GWL_STYLE, (int)style);
+
+      // Get rid of the Dialog Modal Frame.
+      var exStyle = (uint)GetWindowLong(hWnd, GWL_EXSTYLE);
+      exStyle ^= (uint)WS_EX_DLGMODALFRAME;
+      SetWindowLong(hWnd, GWL_EXSTYLE, (int)exStyle);
+
+      // Resize the window to the size of the client area.
+      SetWindowPos(hWnd, (HWND)IntPtr.Zero, 0, 0, rect.right, rect.bottom, SWP_NOZORDER | SWP_NOACTIVATE);
+
+      var f = new Form();
+      f.Deactivate += (sender, e) => { f.Tag = GetFocus(); }; // Save the focus so we can restore it when the form is activated.
+      f.Activated += (sender, e) => { if (f.Tag != null) SetFocus((HWND)f.Tag); }; // Restore the focus.
+      SetParent(hWnd, (HWND)f.Handle);
+      var title = getChildNode(hWnd);
+      f.Text = (title != null) ? title.Text : "<Unknown>";
+
+      // Resize the form to the size of the Whisper window.
+      f.ClientSize = new System.Drawing.Size(rect.right, rect.bottom);
+      // If our form is resized, we need to resize the Whisper window.
+      f.Resize += (object? sender, EventArgs e) => { SetWindowPos(hWnd, (HWND)IntPtr.Zero, 0, 0, f.ClientSize.Width, f.ClientSize.Height, SWP_NOZORDER | SWP_NOACTIVATE); };
+      f.Show();
+
+      nuint ICON_SMALL =  0x0;
+      nuint ICON_BIG =    0x1;
+
+      nint hIconBig = SendMessage((HWND)hWnd, WM_GETICON, ICON_BIG, IntPtr.Zero);
+      nint hIconSmall = SendMessage((HWND)hWnd, WM_GETICON, ICON_SMALL2, IntPtr.Zero);
+      SendMessage((HWND)f.Handle, WM_SETICON, ICON_SMALL, hIconSmall);
+      SendMessage((HWND)f.Handle, WM_SETICON, ICON_BIG, hIconBig);
     }
   }
 }
