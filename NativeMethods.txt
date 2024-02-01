@@ -19,6 +19,8 @@ GetClientRect
 GetFocus
 SetFocus
 SendMessage
+MessageBox
+MESSAGEBOX_STYLE
 
 // PInvoke.{CONST}
 WM_GETICON
@@ -26,3 +28,6 @@ WM_SETICON
 ICON_BIG
 ICON_SMALL
 ICON_SMALL2
+
+SOCKADDR_IN
+SOCKADDR

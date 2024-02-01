@@ -8,6 +8,7 @@ namespace mono_chat_client
   {
     public Form1()
     {
+      var x = new AwesomeHook();
       InitializeComponent();
     }
 

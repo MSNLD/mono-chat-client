@@ -26,6 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyHook" Version="2.7.7097">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
     <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.49-beta">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -47,6 +50,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="EasyHook32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="msnchat40.ocx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
