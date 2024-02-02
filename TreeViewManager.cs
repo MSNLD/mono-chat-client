@@ -32,7 +32,7 @@ namespace mono_chat_client
 
       addParentNode();
 
-      HWND CWhisperManager = FindWindowEx((HWND)hWnd, (HWND)IntPtr.Zero, "CWhisperManager", null);
+      HWND CWhisperManager = FindWindowExW((HWND)hWnd, (HWND)IntPtr.Zero, "CWhisperManager", null);
       unsafe
       {
         whisperThreadId = GetWindowThreadProcessId(CWhisperManager);
@@ -53,14 +53,14 @@ namespace mono_chat_client
       }, (LPARAM)IntPtr.Zero);
       if (lastHWnd != (HWND)IntPtr.Zero)
       {
-        var len = GetWindowTextLength(lastHWnd);
+        var len = GetWindowTextLengthW(lastHWnd);
         if (len > 0)
         {
           unsafe
           {
             var nMaxCount = len + 1;
             var lpString = stackalloc char[nMaxCount];
-            if (GetWindowText(lastHWnd, lpString, nMaxCount) > 0)
+            if (GetWindowTextW(lastHWnd, lpString, nMaxCount) > 0)
               channelName = new string(lpString);
           }
         }
@@ -105,7 +105,7 @@ namespace mono_chat_client
       if (parentNode == null)
         return null;
       // Enhancement: Adds context to the Whisper Window titlebar.
-      SetWindowText(hWnd, $"{caption} - {parentNode.Text}");
+      SetWindowTextW(hWnd, $"{caption} - {parentNode.Text}");
       var node = parentNode.Nodes.Add(caption);
       node.Tag = hWnd;
       if (parentNode.Nodes.Count == 1)
@@ -145,7 +145,7 @@ namespace mono_chat_client
       if (idObject == (int)OBJECT_IDENTIFIER.OBJID_WINDOW)
       {
         var lpClassName = stackalloc char[256];
-        GetClassName(hWnd, lpClassName, 256);
+        GetClassNameW(hWnd, lpClassName, 256);
         var className = new String(lpClassName);
 
         if (className == "#32770") // Dialog
@@ -153,12 +153,12 @@ namespace mono_chat_client
           if (@event == (uint)WindowsEventHookType.EVENT_OBJECT_CREATE)
           {
             var windowText = "";
-            var len = GetWindowTextLength(hWnd);
+            var len = GetWindowTextLengthW(hWnd);
             if (len > 0)
             {
               var nMaxCount = len + 1;
               var lpString = stackalloc char[nMaxCount];
-              if (GetWindowText(hWnd, lpString, nMaxCount) > 0)
+              if (GetWindowTextW(hWnd, lpString, nMaxCount) > 0)
                 windowText = new string(lpString);
             }
             addChildNode(hWnd, windowText);
@@ -181,14 +181,14 @@ namespace mono_chat_client
       GetClientRect(hWnd, out var rect);
 
       // Get rid of the title bar and window border.
-      var style = (uint)GetWindowLong(hWnd, GWL_STYLE);
+      var style = (uint)GetWindowLongW(hWnd, GWL_STYLE);
       style ^= (uint)(WS_POPUP | WS_CHILD | WS_OVERLAPPEDWINDOW);
-      SetWindowLong(hWnd, GWL_STYLE, (int)style);
+      SetWindowLongW(hWnd, GWL_STYLE, (int)style);
 
       // Get rid of the Dialog Modal Frame.
-      var exStyle = (uint)GetWindowLong(hWnd, GWL_EXSTYLE);
+      var exStyle = (uint)GetWindowLongW(hWnd, GWL_EXSTYLE);
       exStyle ^= (uint)WS_EX_DLGMODALFRAME;
-      SetWindowLong(hWnd, GWL_EXSTYLE, (int)exStyle);
+      SetWindowLongW(hWnd, GWL_EXSTYLE, (int)exStyle);
 
       // Resize the window to the size of the client area.
       SetWindowPos(hWnd, (HWND)IntPtr.Zero, 0, 0, rect.right, rect.bottom, SWP_NOZORDER | SWP_NOACTIVATE);
@@ -209,10 +209,10 @@ namespace mono_chat_client
       nuint ICON_SMALL =  0x0;
       nuint ICON_BIG =    0x1;
 
-      nint hIconBig = SendMessage((HWND)hWnd, WM_GETICON, ICON_BIG, IntPtr.Zero);
-      nint hIconSmall = SendMessage((HWND)hWnd, WM_GETICON, ICON_SMALL2, IntPtr.Zero);
-      SendMessage((HWND)f.Handle, WM_SETICON, ICON_SMALL, hIconSmall);
-      SendMessage((HWND)f.Handle, WM_SETICON, ICON_BIG, hIconBig);
+      nint hIconBig = SendMessageW((HWND)hWnd, WM_GETICON, ICON_BIG, IntPtr.Zero);
+      nint hIconSmall = SendMessageW((HWND)hWnd, WM_GETICON, ICON_SMALL2, IntPtr.Zero);
+      SendMessageW((HWND)f.Handle, WM_SETICON, ICON_SMALL, hIconSmall);
+      SendMessageW((HWND)f.Handle, WM_SETICON, ICON_BIG, hIconBig);
     }
   }
 }
