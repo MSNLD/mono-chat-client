@@ -1,16 +1,16 @@
 ﻿SetWinEventHook
-GetWindowText
-GetWindowTextLength
+GetWindowTextW
+GetWindowTextLengthW
 GetWindowThreadProcessId
-FindWindowEx
-GetClassName
+FindWindowExW
+GetClassNameW
 OBJECT_IDENTIFIER
 EnumChildWindows
-SetWindowText
+SetWindowTextW
 WINDOW_STYLE
-SetWindowLong
+SetWindowLongW
 WINDOW_LONG_PTR_INDEX
-GetWindowLong
+GetWindowLongW
 WINDOW_EX_STYLE
 SetParent
 SetWindowPos
@@ -18,8 +18,8 @@ SET_WINDOW_POS_FLAGS
 GetClientRect
 GetFocus
 SetFocus
-SendMessage
-MessageBox
+SendMessageW
+MessageBoxA
 MESSAGEBOX_STYLE
 
 // PInvoke.{CONST}
@@ -30,4 +30,13 @@ ICON_SMALL
 ICON_SMALL2
 
 SOCKADDR_IN
+SOCKADDR_IN6
 SOCKADDR
+
+// Registry (Hooking msnchat4*.ocx)
+RegCreateKeyExA
+RegCloseKey
+RegOpenKeyExA
+RegQueryValueExA
+
+Windows.Win32.Networking.WinSock.connect
