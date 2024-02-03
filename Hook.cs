@@ -3,6 +3,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Net;
+using System.Net.Sockets;
+using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Text;
@@ -19,6 +22,8 @@ namespace mono_chat_client
 {
   internal class AwesomeHook
   {
+    static IntPtr currentSocket;
+
     [DllImport("wsock32.dll", SetLastError = true)]
     internal static extern int WSAGetLastError();
 
@@ -27,7 +32,49 @@ namespace mono_chat_client
       createMessageBoxHook();
       createConnectHook();
       createRegistryHooks();
-      //createFindResourceHook();
+      createFindResourceHook();
+      createRecvHook();
+    }
+
+    internal void createRecvHook()
+    {
+      var recvHook = LocalHook.Create(
+               LocalHook.GetProcAddress("wsock32.dll", "recv"),
+                      new RecvDelegate(RecvHook),
+                             this);
+      recvHook.ThreadACL.SetExclusiveACL(new Int32[] { });
+    }
+
+    public delegate int RecvDelegate(IntPtr s, PSTR buf, int len, SEND_RECV_FLAGS flags);
+
+    public static int RecvHook(IntPtr s, PSTR buf, int len, SEND_RECV_FLAGS flags)
+    {
+      var _s = new SafeSocketHandle(s, false);
+      var bytesReceived = PInvoke.recv(_s, buf, len, flags);
+      if (bytesReceived > 0)
+      {
+        unsafe
+        {
+          var sBuf = new string((sbyte*)buf.Value, 0, bytesReceived, Encoding.Latin1);
+          Debug.WriteLine($"Received {bytesReceived} bytes: " + sBuf);
+          if (sBuf.StartsWith(":>Ravi!0F28B491C00F4F059F8CAFB1C1922E9E@GateKeeper "))
+          {
+            Debug.WriteLine("Ravi is alive!");
+            var response = "PRIVMSG %#The\\bLobby :Ravi is alive!\r\n";
+
+            PInvoke.send(_s, response, response.Length, 0);
+            writeFromOcx(response);
+          }
+        }
+      }
+      return bytesReceived;
+    }
+
+    internal static void writeFromOcx(string text)
+    {
+      var crText = $"{text}\r\n"; // Append a carriage return and line feed to the end of the string
+      var _s = new SafeSocketHandle(currentSocket, false);
+      PInvoke.send(_s, crText, crText.Length, 0);
     }
 
     internal void createFindResourceHook()
@@ -36,23 +83,28 @@ namespace mono_chat_client
         LocalHook.GetProcAddress("kernel32.dll", "FindResourceA"),
         new FindResourceDelegate(FindResourceHook),
         this);
-      findResourceHook.ThreadACL.SetExclusiveACL(new Int32[1] { Environment.CurrentManagedThreadId });
+      findResourceHook.ThreadACL.SetExclusiveACL(new Int32[] { });
     }
 
     [DllImport("KERNEL32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
-    internal static extern IntPtr FindResourceA(IntPtr hModule, [MarshalAs(UnmanagedType.LPStr)] string lpName, [MarshalAs(UnmanagedType.LPStr)] string lpType);
+    internal static extern IntPtr FindResourceA(
+      HMODULE hModule,
+        IntPtr lpName,
+        IntPtr lpType);
 
     public delegate IntPtr FindResourceDelegate(
-      IntPtr hModule,
-        [MarshalAs(UnmanagedType.LPStr)] string lpName,
-        [MarshalAs(UnmanagedType.LPStr)] string lpType);
+      HMODULE hModule,
+        IntPtr lpName,
+        IntPtr lpType);
 
     public static IntPtr FindResourceHook(
-      IntPtr hModule,
-        [MarshalAs(UnmanagedType.LPStr)] string lpName,
-        [MarshalAs(UnmanagedType.LPStr)] string lpType)
+      HMODULE hModule,
+        IntPtr lpName,
+        IntPtr lpType)
     {
       Debug.WriteLine($"FindResource: hModule: {hModule}, lpName: {lpName}, lpType: {lpType}");
+      
+      //return IntPtr.Zero;
       return FindResourceA(hModule, lpName, lpType);
     }
 
@@ -63,13 +115,14 @@ namespace mono_chat_client
         LocalHook.GetProcAddress("wsock32.dll", "connect"),
         new ConnectDelegate(ConnectHook),
         this);
-      connectHook.ThreadACL.SetExclusiveACL(new Int32[] { });
+      connectHook.ThreadACL.SetExclusiveACL(new Int32[] { Environment.CurrentManagedThreadId });
     }
 
     public delegate int ConnectDelegate(SOCKET s, IntPtr name, int namelen);
 
     public static int ConnectHook(SOCKET s, IntPtr name, int namelen)
     {
+      currentSocket = (IntPtr)s.Value;
       IPAddress remoteIP;
       ushort remotePort;
 
@@ -103,7 +156,7 @@ namespace mono_chat_client
       Debug.WriteLine($"Connecting to {remoteIP.ToString()}:{remotePort}");
       // We could do some cool stuff here, like redirecting the connection to a different server
 
-      SafeHandle _s = new SafeFileHandle((nint)s.Value, true);
+      SafeSocketHandle _s = new SafeSocketHandle((IntPtr)s.Value, false);
       return PInvoke.connect(_s, sockAddr, namelen);
     }
 
@@ -125,7 +178,7 @@ namespace mono_chat_client
       IntPtr phkResult);
 
     public static WIN32_ERROR RegOpenKeyExAHook(
-      SafeRegistryHandle hKey,
+      HKEY hKey,
         string lpSubKey,
         uint ulOptions,
         REG_SAM_FLAGS samDesired,

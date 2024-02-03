@@ -42,3 +42,5 @@ RegQueryValueExA
 //FindResourceA
 
 Windows.Win32.Networking.WinSock.connect
+Windows.Win32.Networking.WinSock.recv
+Windows.Win32.Networking.WinSock.send
