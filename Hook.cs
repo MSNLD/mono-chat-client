@@ -1,10 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Text;
+using System.Xml.Linq;
 using EasyHook;
 using Microsoft.Win32.SafeHandles;
 using Windows.Win32;
@@ -25,6 +27,33 @@ namespace mono_chat_client
       createMessageBoxHook();
       createConnectHook();
       createRegistryHooks();
+      //createFindResourceHook();
+    }
+
+    internal void createFindResourceHook()
+    {
+      var findResourceHook = LocalHook.Create(
+        LocalHook.GetProcAddress("kernel32.dll", "FindResourceA"),
+        new FindResourceDelegate(FindResourceHook),
+        this);
+      findResourceHook.ThreadACL.SetExclusiveACL(new Int32[1] { Environment.CurrentManagedThreadId });
+    }
+
+    [DllImport("KERNEL32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
+    internal static extern IntPtr FindResourceA(IntPtr hModule, [MarshalAs(UnmanagedType.LPStr)] string lpName, [MarshalAs(UnmanagedType.LPStr)] string lpType);
+
+    public delegate IntPtr FindResourceDelegate(
+      IntPtr hModule,
+        [MarshalAs(UnmanagedType.LPStr)] string lpName,
+        [MarshalAs(UnmanagedType.LPStr)] string lpType);
+
+    public static IntPtr FindResourceHook(
+      IntPtr hModule,
+        [MarshalAs(UnmanagedType.LPStr)] string lpName,
+        [MarshalAs(UnmanagedType.LPStr)] string lpType)
+    {
+      Debug.WriteLine($"FindResource: hModule: {hModule}, lpName: {lpName}, lpType: {lpType}");
+      return FindResourceA(hModule, lpName, lpType);
     }
 
     internal void createConnectHook()
@@ -38,40 +67,6 @@ namespace mono_chat_client
     }
 
     public delegate int ConnectDelegate(SOCKET s, IntPtr name, int namelen);
-
-    private static void Dump(object o)
-    {
-      if (o == null)
-      {
-        Debug.WriteLine("<null>");
-        return;
-      }
-
-      var type = o.GetType();
-      var properties = TypeDescriptor.GetProperties(type);
-
-      Debug.Write('{');
-      Debug.Write(type.Name);
-
-      if (properties.Count != 0)
-      {
-        Debug.Write(' ');
-
-        for (int i = 0, n = properties.Count; i < n; i++)
-        {
-          if (i != 0)
-            Console.Write("; ");
-
-          var property = properties[i];
-
-          Debug.Write(property.Name);
-          Debug.Write(" = ");
-          Debug.Write(property.GetValue(o));
-        }
-      }
-
-      Debug.WriteLine('}');
-    }
 
     public static int ConnectHook(SOCKET s, IntPtr name, int namelen)
     {
@@ -90,7 +85,7 @@ namespace mono_chat_client
         SOCKADDR_IN6 sockAddr_in6 = Marshal.PtrToStructure<SOCKADDR_IN6>(name);
         unsafe
         {
-          // I wrote this, and didn't test it. I'm not even sure it will ever be reached - does wsock32.dll even support IPv6?
+          // I wrote the IPv6 part and couldn't test it. I'm not even sure it will ever be reached - does wsock32.dll even support IPv6?
           var in6_addr = sockAddr_in6.sin6_addr;
           ReadOnlySpan<Byte> addr = new ReadOnlySpan<Byte>(&in6_addr.u.Byte.Value, sockAddr_in6.sin6_addr.u.Byte.Length);
           //byte[] addr = new byte[in6_addr.u.Byte.Length];
@@ -122,15 +117,15 @@ namespace mono_chat_client
       hook.ThreadACL.SetExclusiveACL(new Int32[] { });
     }
 
-    public unsafe delegate WIN32_ERROR RegOpenKeyExADelegate(
+    public delegate WIN32_ERROR RegOpenKeyExADelegate(
       HKEY hKey,
       string lpSubKey,
       uint ulOptions,
       REG_SAM_FLAGS samDesired,
       IntPtr phkResult);
 
-    public unsafe static WIN32_ERROR RegOpenKeyExAHook(
-      HKEY hKey,
+    public static WIN32_ERROR RegOpenKeyExAHook(
+      SafeRegistryHandle hKey,
         string lpSubKey,
         uint ulOptions,
         REG_SAM_FLAGS samDesired,

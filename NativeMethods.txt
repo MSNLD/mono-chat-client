@@ -22,7 +22,6 @@ SendMessageW
 MessageBoxA
 MESSAGEBOX_STYLE
 
-// PInvoke.{CONST}
 WM_GETICON
 WM_SETICON
 ICON_BIG
@@ -38,5 +37,8 @@ RegCreateKeyExA
 RegCloseKey
 RegOpenKeyExA
 RegQueryValueExA
+
+// Resources (Hooking msnchat4*.ocx)
+//FindResourceA
 
 Windows.Win32.Networking.WinSock.connect
