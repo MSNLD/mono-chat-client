@@ -206,9 +206,6 @@ namespace mono_chat_client
       f.Resize += (object? sender, EventArgs e) => { SetWindowPos(hWnd, (HWND)IntPtr.Zero, 0, 0, f.ClientSize.Width, f.ClientSize.Height, SWP_NOZORDER | SWP_NOACTIVATE); };
       f.Show();
 
-      nuint ICON_SMALL =  0x0;
-      nuint ICON_BIG =    0x1;
-
       nint hIconBig = SendMessageW((HWND)hWnd, WM_GETICON, ICON_BIG, IntPtr.Zero);
       nint hIconSmall = SendMessageW((HWND)hWnd, WM_GETICON, ICON_SMALL2, IntPtr.Zero);
       SendMessageW((HWND)f.Handle, WM_SETICON, ICON_SMALL, hIconSmall);
