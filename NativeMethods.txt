@@ -18,29 +18,29 @@ SET_WINDOW_POS_FLAGS
 GetClientRect
 GetFocus
 SetFocus
-SendMessageW
 MessageBoxA
 MESSAGEBOX_STYLE
-
+SendMessageW
 WM_GETICON
 WM_SETICON
 ICON_BIG
 ICON_SMALL
 ICON_SMALL2
 
-SOCKADDR_IN
-SOCKADDR_IN6
-SOCKADDR
-
 // Registry (Hooking msnchat4*.ocx)
-RegCreateKeyExA
 RegCloseKey
+RegCreateKeyExA
 RegOpenKeyExA
 RegQueryValueExA
 
-// Resources (Hooking msnchat4*.ocx)
-//FindResourceA
-
+// Networking
 Windows.Win32.Networking.WinSock.connect
 Windows.Win32.Networking.WinSock.recv
 Windows.Win32.Networking.WinSock.send
+SOCKADDR
+SOCKADDR_IN
+SOCKADDR_IN6
+
+EnumThreadWindows
+GetCurrentThreadId
+FindResourceA
