@@ -1,19 +1,19 @@
 ﻿using System.ComponentModel;
 using System.Runtime.InteropServices;
-using MSNChat45;
+using mono_chat_client.MSNChat.MSNChat42;
 
-namespace AxMSNChat45
+namespace mono_chat_client.MSNChat.AxMSNChat42
 {
   [DesignTimeVisible(true)]
-  [Clsid("{fa980e7e-9e44-4d2f-b3c2-9a5be42525f8}")]
+  [Clsid("{71b8f2df-0032-48ba-a784-93d9caaab07d}")]
   public class AxChatSettings : AxHost
   {
     private IChatSettings? ocx;
 
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    [ComAliasName("System.UInt32")]
     [Browsable(true)]
     [DispId(-501)]
-    [ComAliasName("System.UInt32")]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public override Color BackColor
     {
       get
@@ -34,10 +34,10 @@ namespace AxMSNChat45
       }
     }
 
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    [DispId(-513)]
     [ComAliasName("System.UInt32")]
+    [DispId(-513)]
     [Browsable(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public override Color ForeColor
     {
       get
@@ -103,7 +103,7 @@ namespace AxMSNChat45
     }
 
     public AxChatSettings()
-        : base("fa980e7e-9e44-4d2f-b3c2-9a5be42525f8")
+        : base("71b8f2df-0032-48ba-a784-93d9caaab07d")
     {
     }
 
@@ -125,7 +125,7 @@ namespace AxMSNChat45
   }
 
   [DesignTimeVisible(true)]
-  [Clsid("{f58e1cef-a068-4c15-ba5e-587caf3ee8c6}")]
+  [Clsid("{7a32634b-029c-4836-a023-528983982a49}")]
   public class AxMSNChatFrame : AxHost
   {
     private IChatFrame? ocx;
@@ -176,8 +176,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DispId(3)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    [DispId(3)]
     public virtual string HexRoomName
     {
       get
@@ -220,8 +220,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     [DispId(5)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public virtual string Server
     {
       get
@@ -242,9 +242,9 @@ namespace AxMSNChat45
       }
     }
 
+    [ComAliasName("System.UInt32")]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     [DispId(6)]
-    [ComAliasName("System.UInt32")]
     public virtual Color BackHighlightColor
     {
       get
@@ -266,8 +266,8 @@ namespace AxMSNChat45
     }
 
     [ComAliasName("System.UInt32")]
-    [DispId(7)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    [DispId(7)]
     public virtual Color ButtonFrameColor
     {
       get
@@ -288,8 +288,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     [ComAliasName("System.UInt32")]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     [DispId(8)]
     public virtual Color TopBackHighlightColor
     {
@@ -333,8 +333,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DispId(10)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    [DispId(10)]
     public virtual string URLBack
     {
       get
@@ -377,8 +377,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     [DispId(12)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public virtual string Topic
     {
       get
@@ -399,8 +399,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DispId(13)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    [DispId(13)]
     public virtual string WelcomeMsg
     {
       get
@@ -421,8 +421,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     [DispId(15)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public virtual string BaseURL
     {
       get
@@ -443,9 +443,9 @@ namespace AxMSNChat45
       }
     }
 
-    [DispId(16)]
-    [ComAliasName("System.UInt32")]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    [ComAliasName("System.UInt32")]
+    [DispId(16)]
     public virtual Color InputBorderColor
     {
       get
@@ -532,8 +532,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     [DispId(21)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public virtual string ResDLL
     {
       get
@@ -554,9 +554,9 @@ namespace AxMSNChat45
       }
     }
 
-    [ComAliasName("System.UInt32")]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     [DispId(22)]
+    [ComAliasName("System.UInt32")]
     public virtual Color ButtonTextColor
     {
       get
@@ -578,8 +578,8 @@ namespace AxMSNChat45
     }
 
     [DispId(23)]
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     [ComAliasName("System.UInt32")]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public virtual Color ButtonBackColor
     {
       get
@@ -600,8 +600,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     [DispId(24)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public virtual string PassportTicket
     {
       get
@@ -666,8 +666,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DispId(27)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    [DispId(27)]
     public virtual string MessageOfTheDay
     {
       get
@@ -688,8 +688,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     [DispId(28)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public virtual string ChannelLanguage
     {
       get
@@ -732,8 +732,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DispId(30)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    [DispId(30)]
     public virtual string NicknameToInvite
     {
       get
@@ -798,8 +798,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DispId(33)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    [DispId(33)]
     public virtual string MSNProfile
     {
       get
@@ -820,8 +820,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DispId(34)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    [DispId(34)]
     public virtual string Market
     {
       get
@@ -842,118 +842,8 @@ namespace AxMSNChat45
       }
     }
 
-    [DispId(35)]
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public virtual string WhisperContent
-    {
-      get
-      {
-        if (ocx == null)
-        {
-          throw new InvalidActiveXStateException("WhisperContent", ActiveXInvokeKind.PropertyGet);
-        }
-        return ocx.WhisperContent;
-      }
-      set
-      {
-        if (ocx == null)
-        {
-          throw new InvalidActiveXStateException("WhisperContent", ActiveXInvokeKind.PropertySet);
-        }
-        ocx.WhisperContent = value;
-      }
-    }
-
-    [DispId(36)]
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public virtual string UserRole
-    {
-      get
-      {
-        if (ocx == null)
-        {
-          throw new InvalidActiveXStateException("UserRole", ActiveXInvokeKind.PropertyGet);
-        }
-        return ocx.UserRole;
-      }
-      set
-      {
-        if (ocx == null)
-        {
-          throw new InvalidActiveXStateException("UserRole", ActiveXInvokeKind.PropertySet);
-        }
-        ocx.UserRole = value;
-      }
-    }
-
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    [DispId(37)]
-    public virtual string AuditMessage
-    {
-      get
-      {
-        if (ocx == null)
-        {
-          throw new InvalidActiveXStateException("AuditMessage", ActiveXInvokeKind.PropertyGet);
-        }
-        return ocx.AuditMessage;
-      }
-      set
-      {
-        if (ocx == null)
-        {
-          throw new InvalidActiveXStateException("AuditMessage", ActiveXInvokeKind.PropertySet);
-        }
-        ocx.AuditMessage = value;
-      }
-    }
-
-    [DispId(38)]
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public virtual string SubscriberInfo
-    {
-      get
-      {
-        if (ocx == null)
-        {
-          throw new InvalidActiveXStateException("SubscriberInfo", ActiveXInvokeKind.PropertyGet);
-        }
-        return ocx.SubscriberInfo;
-      }
-      set
-      {
-        if (ocx == null)
-        {
-          throw new InvalidActiveXStateException("SubscriberInfo", ActiveXInvokeKind.PropertySet);
-        }
-        ocx.SubscriberInfo = value;
-      }
-    }
-
-    [DispId(39)]
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public virtual string UpsellURL
-    {
-      get
-      {
-        if (ocx == null)
-        {
-          throw new InvalidActiveXStateException("UpsellURL", ActiveXInvokeKind.PropertyGet);
-        }
-        return ocx.UpsellURL;
-      }
-      set
-      {
-        if (ocx == null)
-        {
-          throw new InvalidActiveXStateException("UpsellURL", ActiveXInvokeKind.PropertySet);
-        }
-        ocx.UpsellURL = value;
-      }
-    }
-
     public AxMSNChatFrame()
-        : base("f58e1cef-a068-4c15-ba5e-587caf3ee8c6")
+        : base("7a32634b-029c-4836-a023-528983982a49")
     {
     }
 

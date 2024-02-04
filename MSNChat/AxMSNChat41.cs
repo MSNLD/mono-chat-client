@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Runtime.InteropServices;
-using MSNChat40;
+using mono_chat_client.MSNChat.MSNChat41;
 
-namespace AxMSNChat40
+namespace mono_chat_client.MSNChat.AxMSNChat41
 {
   [DesignTimeVisible(true)]
   [Clsid("{9088e688-063a-4806-a3db-6522712fc061}")]
@@ -125,7 +125,7 @@ namespace AxMSNChat40
   }
 
   [DesignTimeVisible(true)]
-  [Clsid("{e87a6788-1d0f-4444-8898-1d25829b6755}")]
+  [Clsid("{29c13b62-b9f7-4cd3-8cef-0a58a1a99441}")]
   public class AxMSNChatFrame : AxHost
   {
     private IChatFrame? ocx;
@@ -843,7 +843,7 @@ namespace AxMSNChat40
     }
 
     public AxMSNChatFrame()
-        : base("e87a6788-1d0f-4444-8898-1d25829b6755")
+        : base("29c13b62-b9f7-4cd3-8cef-0a58a1a99441")
     {
     }
 

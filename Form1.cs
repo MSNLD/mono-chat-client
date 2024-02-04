@@ -1,6 +1,4 @@
-using AxMSNChat45;
-using System.Diagnostics;
-using System.Net;
+using mono_chat_client.MSNChat.AxMSNChat45;
 using System.Net.Http.Json;
 using System.Runtime.InteropServices;
 
@@ -36,9 +34,9 @@ namespace mono_chat_client
           sender.AuditMessage = "MSN has detected that you are connected to this chat session from the IP address <B>%1</B>.";
           sender.MessageOfTheDay = "Mono Chat Client - MSN Chat 4.5";
           var x = new AwesomeHook();
-          var httpClient = new HttpClient();
-          IPAddress? ip = await httpClient.GetFromJsonAsync<IPAddress>("https://api64.ipify.org?format=json");
-          if (ip != null && !sender.IsDisposed) sender.AuditMessage = $"Mono.Chat has detected that you are connected to this chat session from the IP address <B>{ip.ip}</B><color #ffffff>(LAN IPv4=%1)</color>";
+          //var httpClient = new HttpClient();
+          //IPAddress? ip = await httpClient.GetFromJsonAsync<IPAddress>("https://api64.ipify.org?format=json");
+          //if (ip != null && !sender.IsDisposed) sender.AuditMessage = $"Mono.Chat has detected that you are connected to this chat session from the IP address <B>{ip.ip}</B><color #ffffff>(LAN IPv4=%1)</color>";
         };
         axChatFrame.HandleCreated += (sender, e) =>
         {

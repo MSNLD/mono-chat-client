@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace MSNChat42
+namespace mono_chat_client.MSNChat.MSNChat41
 {
   [ComImport]
   [InterfaceType(2)]
@@ -24,7 +24,7 @@ namespace MSNChat42
   [ComImport]
   [ClassInterface(ClassInterfaceType.None)]
   [TypeLibType(2)]
-  [Guid("71B8F2DF-0032-48BA-A784-93D9CAAAB07D")]
+  [Guid("9088E688-063A-4806-A3DB-6522712FC061")]
   public class ChatSettingsClass : IChatSettings, ChatSettings
   {
     [ComAliasName("stdole.OLE_COLOR")]
@@ -501,21 +501,19 @@ namespace MSNChat42
     }
 
     [DispId(32)]
-    string CreationModes
+    int radioID
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
       [DispId(32)]
-      [return: MarshalAs(UnmanagedType.BStr)]
       get;
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
       [DispId(32)]
       [param: In]
-      [param: MarshalAs(UnmanagedType.BStr)]
       set;
     }
 
     [DispId(33)]
-    string MSNProfile
+    string CreationModes
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
       [DispId(33)]
@@ -529,7 +527,7 @@ namespace MSNChat42
     }
 
     [DispId(34)]
-    string Market
+    string MSNProfile
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
       [DispId(34)]
@@ -563,8 +561,8 @@ namespace MSNChat42
       set;
     }
 
-    [ComAliasName("stdole.OLE_COLOR")]
     [DispId(-513)]
+    [ComAliasName("stdole.OLE_COLOR")]
     uint ForeColor
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
@@ -615,7 +613,7 @@ namespace MSNChat42
   }
 
   [ComImport]
-  [Guid("7A32634B-029C-4836-A023-528983982A49")]
+  [Guid("29C13B62-B9F7-4CD3-8CEF-0A58A1A99441")]
   [ClassInterface(ClassInterfaceType.None)]
   [TypeLibType(2)]
   public class MSNChatFrameClass : IChatFrame, MSNChatFrame
@@ -1030,21 +1028,19 @@ namespace MSNChat42
     }
 
     [DispId(32)]
-    public virtual extern string CreationModes
+    public virtual extern int radioID
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
       [DispId(32)]
-      [return: MarshalAs(UnmanagedType.BStr)]
       get;
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
       [DispId(32)]
       [param: In]
-      [param: MarshalAs(UnmanagedType.BStr)]
       set;
     }
 
     [DispId(33)]
-    public virtual extern string MSNProfile
+    public virtual extern string CreationModes
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
       [DispId(33)]
@@ -1058,7 +1054,7 @@ namespace MSNChat42
     }
 
     [DispId(34)]
-    public virtual extern string Market
+    public virtual extern string MSNProfile
     {
       [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
       [DispId(34)]
