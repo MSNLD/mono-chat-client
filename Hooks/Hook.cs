@@ -7,6 +7,7 @@ namespace mono_chat_client
     internal AwesomeHook()
     {
       advapi32.createRegOpenKeyExAHook();
+      advapi32.createRegQueryValueExAHook();
       kernel32.createFindResourceAHook();
       user32.createMessageBoxWHook();
       wsock32.createConnectHook();
