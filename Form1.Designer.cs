@@ -37,6 +37,8 @@
       statusStrip1 = new StatusStrip();
       splitContainer1 = new SplitContainer();
       treeView1 = new TreeView();
+      viewToolStripMenuItem = new ToolStripMenuItem();
+      optionsToolStripMenuItem = new ToolStripMenuItem();
       menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
       splitContainer1.Panel1.SuspendLayout();
@@ -45,7 +47,7 @@
       // 
       // menuStrip1
       // 
-      menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, helpToolStripMenuItem });
+      menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, viewToolStripMenuItem, helpToolStripMenuItem });
       menuStrip1.Location = new Point(0, 0);
       menuStrip1.Name = "menuStrip1";
       menuStrip1.Size = new Size(938, 24);
@@ -63,13 +65,13 @@
       // 
       newToolStripMenuItem.Enabled = false;
       newToolStripMenuItem.Name = "newToolStripMenuItem";
-      newToolStripMenuItem.Size = new Size(107, 22);
+      newToolStripMenuItem.Size = new Size(180, 22);
       newToolStripMenuItem.Text = "&New...";
       // 
       // exitToolStripMenuItem
       // 
       exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-      exitToolStripMenuItem.Size = new Size(107, 22);
+      exitToolStripMenuItem.Size = new Size(180, 22);
       exitToolStripMenuItem.Text = "E&xit";
       exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
       // 
@@ -105,7 +107,7 @@
       // 
       splitContainer1.Panel1.Controls.Add(treeView1);
       splitContainer1.Size = new Size(938, 411);
-      splitContainer1.SplitterDistance = 200;
+      splitContainer1.SplitterDistance = 199;
       splitContainer1.TabIndex = 3;
       // 
       // treeView1
@@ -113,8 +115,22 @@
       treeView1.Dock = DockStyle.Fill;
       treeView1.Location = new Point(0, 0);
       treeView1.Name = "treeView1";
-      treeView1.Size = new Size(200, 411);
+      treeView1.Size = new Size(199, 411);
       treeView1.TabIndex = 3;
+      // 
+      // viewToolStripMenuItem
+      // 
+      viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { optionsToolStripMenuItem });
+      viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+      viewToolStripMenuItem.Size = new Size(44, 20);
+      viewToolStripMenuItem.Text = "&View";
+      // 
+      // optionsToolStripMenuItem
+      // 
+      optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+      optionsToolStripMenuItem.Size = new Size(180, 22);
+      optionsToolStripMenuItem.Text = "&Options";
+      optionsToolStripMenuItem.Click += optionsToolStripMenuItem_Click;
       // 
       // Form1
       // 
@@ -148,5 +164,7 @@
     private ToolStripMenuItem aboutToolStripMenuItem;
     private SplitContainer splitContainer1;
     private TreeView treeView1;
+    private ToolStripMenuItem viewToolStripMenuItem;
+    private ToolStripMenuItem optionsToolStripMenuItem;
   }
 }

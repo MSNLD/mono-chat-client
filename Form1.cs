@@ -1,5 +1,4 @@
 using mono_chat_client.MSNChat.AxMSNChat45;
-using System.Net.Http.Json;
 using System.Runtime.InteropServices;
 
 namespace mono_chat_client
@@ -62,6 +61,16 @@ namespace mono_chat_client
     private void exitToolStripMenuItem_Click(object sender, EventArgs e)
     {
       Close();
+    }
+
+    private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      var dlgForm = new Form();
+      var axOptions = new MSNChat.AxMSNChat45.AxChatSettings();
+      axOptions.Dock = DockStyle.Fill;
+      dlgForm.ClientSize = new Size(420, 630);
+      dlgForm.Controls.Add(axOptions);
+      dlgForm.ShowDialog();
     }
   }
 }
