@@ -11,14 +11,6 @@ namespace mono_chat_client
       InitializeComponent();
     }
 
-    void SetTimeout(Action action, int ms)
-    {
-      Task.Delay(ms).ContinueWith((task) =>
-      {
-        action();
-      }, TaskScheduler.FromCurrentSynchronizationContext());
-    }
-
     public record class IPAddress(string? ip);
     private void Form1_Load(object sender, EventArgs e)
     {
