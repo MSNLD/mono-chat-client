@@ -29,7 +29,7 @@ namespace mono_chat_client.Hooks
       if (lpCaption == "MSN Chat")
         lpCaption = "Mono Chat"; // Re-write any "MSN Chat" dialogs as "Mono Chat"
 
-      return PInvoke.MessageBoxA(hWnd, lpText, lpCaption, uType);
+      return PInvoke.MessageBoxW(hWnd, lpText, lpCaption, uType);
     }
   }
 }
