@@ -44,3 +44,11 @@ SOCKADDR_IN6
 EnumThreadWindows
 GetCurrentThreadId
 FindResourceA
+LoadLibraryEx
+FreeLibrary
+GetModuleInformation
+MODULEINFO
+LoadResource
+SizeOfResource
+EnumProcessModulesEx
+GetModuleBaseName

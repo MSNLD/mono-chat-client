@@ -46,6 +46,9 @@
     <None Update="EasyHook32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="MsnChat40de-at.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="MsnChat45.ocx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

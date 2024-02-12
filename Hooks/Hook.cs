@@ -9,6 +9,7 @@ namespace mono_chat_client
       advapi32.createRegOpenKeyExAHook();
       advapi32.createRegQueryValueExAHook();
       kernel32.createFindResourceAHook();
+      kernel32.createLoadResourceHook();
       user32.createMessageBoxWHook();
       wsock32.createConnectHook();
       wsock32.createRecvHook();

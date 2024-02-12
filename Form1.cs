@@ -13,10 +13,11 @@ namespace mono_chat_client
     public record class IPAddress(string? ip);
     private void Form1_Load(object sender, EventArgs e)
     {
+      ResDLL.load("MsnChat40de-at.dll");
       try
       {
         AxMSNChatFrame axChatFrame = new AxMSNChatFrame();
-        axChatFrame.OcxCreated += async (sender, ocx) =>
+        axChatFrame.OcxCreated += (sender, ocx) =>
         {
           sender.BaseURL = "http://mono.chat/";
           sender.NickName = "JD[mcc45]";
@@ -24,6 +25,7 @@ namespace mono_chat_client
           sender.Server = "dir.irc7.com";
           sender.AuditMessage = "MSN has detected that you are connected to this chat session from the IP address <B>%1</B>.";
           sender.MessageOfTheDay = "Mono Chat Client - MSN Chat 4.5";
+          sender.WhisperContent = "http://g.msn.com/5chenus/31";
           var x = new AwesomeHook();
           //var httpClient = new HttpClient();
           //IPAddress? ip = await httpClient.GetFromJsonAsync<IPAddress>("https://api64.ipify.org?format=json");
