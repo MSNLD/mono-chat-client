@@ -50,7 +50,7 @@
     <None Update="MsnChat40de-at.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="MsnChat45.ocx">
+    <None Update="MSNChat\MSNChat45.ocx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
