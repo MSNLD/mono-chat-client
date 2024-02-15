@@ -13,6 +13,8 @@ namespace mono_chat_client
     public record class IPAddress(string? ip);
     private void Form1_Load(object sender, EventArgs e)
     {
+      var settings = Config.Instance.AppSettings;
+
       ResDLL.load("MsnChat40de-at.dll");
       try
       {
@@ -20,9 +22,9 @@ namespace mono_chat_client
         axChatFrame.OcxCreated += (sender, ocx) =>
         {
           sender.BaseURL = "http://mono.chat/";
-          sender.NickName = "JD[mcc45]";
-          sender.RoomName = "The Lobby";
-          sender.Server = "dir.irc7.com";
+          sender.NickName = settings.NickName;
+          sender.RoomName = settings.RoomName;
+          sender.Server = settings.Server;
           sender.AuditMessage = "MSN has detected that you are connected to this chat session from the IP address <B>%1</B>.";
           sender.MessageOfTheDay = "Mono Chat Client - MSN Chat 4.5";
           sender.WhisperContent = "http://g.msn.com/5chenus/31";
