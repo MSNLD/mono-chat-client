@@ -15,7 +15,7 @@ namespace mono_chat_client
     {
       var settings = Config.Instance.AppSettings;
 
-      ResDLL.load("MsnChat40de-at.dll");
+      ResDLL.load($"MSNChat\\Locale\\MSNChat40{settings.Locale}.dll");
       try
       {
         AxMSNChatFrame axChatFrame = new AxMSNChatFrame();

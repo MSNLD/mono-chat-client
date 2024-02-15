@@ -35,6 +35,7 @@ namespace mono_chat_client
         {
           var defaultSettings = new
           {
+            Locale = "en-us",
             NickName = "Ricardo",
             RoomName = "The Lobby",
             Server = "dir.irc7.com"

@@ -47,7 +47,16 @@
     <None Update="EasyHook32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="MsnChat40de-at.dll">
+    <None Update="MSNChat\Locale\MSNChat40de-de.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MSNChat\Locale\MSNChat40en-us.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MSNChat\Locale\MSNChat40fr-fr.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="MSNChat\Locale\MSNChat40nl-nl.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="MSNChat\MSNChat45.ocx">
