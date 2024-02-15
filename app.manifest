@@ -2,7 +2,7 @@
 <assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
   <assemblyIdentity type="win32" name="mono-chat-client.exe" version="1.0.0.0"/>
 
-  <file name="./msnchat45.ocx">
+  <file name="./MSNChat/MSNChat45.ocx">
     <comClass description="MSN Chat Control 4.5" clsid="{F58E1CEF-A068-4c15-BA5E-587CAF3EE8C6}" threadingModel="Apartment" tlbid="{0F0A655C-6C6D-4e0b-8038-F980B36F9C78}" />
     <comClass description="MSN Chat Control 4.5 Settings" clsid="{FA980E7E-9E44-4d2f-B3C2-9A5BE42525F8}" threadingModel="Apartment" tlbid="{0F0A655C-6C6D-4e0b-8038-F980B36F9C78}" />
   </file>

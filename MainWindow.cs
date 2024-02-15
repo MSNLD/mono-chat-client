@@ -3,9 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace mono_chat_client
 {
-  public partial class Form1 : Form
+  public partial class MainWindow : Form
   {
-    public Form1()
+    public MainWindow()
     {
       InitializeComponent();
     }
@@ -13,16 +13,18 @@ namespace mono_chat_client
     public record class IPAddress(string? ip);
     private void Form1_Load(object sender, EventArgs e)
     {
-      ResDLL.load("MsnChat40de-at.dll");
+      var settings = Config.Instance.AppSettings;
+
+      ResDLL.load($"MSNChat\\Locale\\MSNChat40{settings.Locale}.dll");
       try
       {
         AxMSNChatFrame axChatFrame = new AxMSNChatFrame();
         axChatFrame.OcxCreated += (sender, ocx) =>
         {
           sender.BaseURL = "http://mono.chat/";
-          sender.NickName = "JD[mcc45]";
-          sender.RoomName = "The Lobby";
-          sender.Server = "dir.irc7.com";
+          sender.NickName = settings.NickName;
+          sender.RoomName = settings.RoomName;
+          sender.Server = settings.Server;
           sender.AuditMessage = "MSN has detected that you are connected to this chat session from the IP address <B>%1</B>.";
           sender.MessageOfTheDay = "Mono Chat Client - MSN Chat 4.5";
           sender.WhisperContent = "http://g.msn.com/5chenus/31";
@@ -40,15 +42,15 @@ namespace mono_chat_client
       }
       catch (System.IO.FileNotFoundException)
       {
-        // MsnChat45.ocx is not found locally (SxS Assembly)
-        MessageBox.Show("MsnChat45.ocx is missing.\nThis application will now close.");
+        // MSNChat45.ocx is not found locally (SxS Assembly)
+        MessageBox.Show("MSNChat45.ocx is missing.\nThis application will now close.");
         Close();
       }
       catch (COMException ex)
       {
         // Class not registered. We shouldn't really hit this if our manifests are doing their job.
         if (ex.ErrorCode == -2147221164)
-          MessageBox.Show("MsnChat45.ocx is not installed\nThis application will now close.");
+          MessageBox.Show("MSNChat45.ocx is not installed\nThis application will now close.");
         else
           MessageBox.Show(ex.Message);
         Close();
